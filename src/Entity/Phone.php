@@ -7,7 +7,10 @@ use App\Repository\PhoneRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PhoneRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    collectionOperations: ["GET" => ["path" => "/telephones"]],
+    itemOperations: ["GET" => ["path" => "/telephones/{id}"]]
+)]
 class Phone
 {
     #[ORM\Id]
@@ -16,25 +19,25 @@ class Phone
     private $id; /** @phpstan-ignore-line */
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    private string $name;
 
     #[ORM\Column(type: 'float')]
-    private $display;
+    private float $display;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $processor;
+    private string $processor;
 
     #[ORM\Column(type: 'integer')]
-    private $batteryCapacity;
+    private int $batteryCapacity;
 
     #[ORM\Column(type: 'integer')]
-    private $price;
+    private int $price;
 
     #[ORM\Column(type: 'integer', nullable: true)]
-    private $quantity;
+    private int $quantity;
 
     #[ORM\Column(type: 'datetime')]
-    private $createdAt;
+    private \DateTime $createdAt;
 
     public function getId(): ?int
     {

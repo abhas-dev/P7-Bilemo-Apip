@@ -5,11 +5,23 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\CustomerRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CustomerRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    collectionOperations: ["GET", "POST"],
+    itemOperations: ["GET", "PUT", "DELETE"],
+    attributes: [
+        "pagination_enabled" => true,
+        "pagination_items_per_page" => 20,
+        "order" => ["firstname" => "desc"]
+    ],
+    denormalizationContext: ["disable_type_enforcement" => true],
+    normalizationContext: ["groups" => "customer_read"],
+)]
+//#[UniqueEntity('email', message: "Cette adresse email est deja enregistrée")]
 class Customer
 {
     #[ORM\Id]
@@ -35,7 +47,8 @@ class Customer
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Groups("customer_read")]
-    #[Assert\NotBlank(message: 'Veuillez indiquer une adresse email')]
+    #[Assert\Email(message: "Le format de l'adresse email n'est pas valide")]
+    #[Assert\NotBlank(message: "L'adresse email est obligatoire")]
     private string $email;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -45,7 +58,8 @@ class Customer
 
     #[ORM\Column(type: 'datetime')]
     #[Groups("customer_read")]
-    private \DateTime $createdAt;
+    #[Assert\Type(type: "\DateTimeInterface", message: "La date doit être au format YYYY-MM-DD")]
+    private $createdAt;
 
     #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'customers')]
     #[Groups("client_detail")]
@@ -121,7 +135,7 @@ class Customer
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $createdAt): self
+    public function setCreatedAt($createdAt): self
     {
         $this->createdAt = $createdAt;
 

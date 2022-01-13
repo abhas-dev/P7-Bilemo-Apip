@@ -31,9 +31,6 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     #[Groups("client_read")]
     private string $companyName;
 
-//    #[ORM\Column(type: 'json')]
-//    private array $roles = [];
-
     #[ORM\Column(type: 'datetime')]
     #[Groups("client_read")]
     private \DateTime $createdAt;
@@ -43,7 +40,7 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $customers;
 
     #[ORM\Column(type: 'json')]
-    private $roles = [];
+    private array $roles = [];
 
     public function __construct()
     {

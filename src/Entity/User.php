@@ -4,25 +4,30 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity('email', message: "Cette adresse email est deja enregistrée")]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id; /** @phpstan-ignore-line */
+    private int $id; /** @phpstan-ignore-line */
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
-    private $email;
+    #[Assert\Email(message: "Le format de l'adresse email n'est pas valide")]
+    #[Assert\NotBlank(message: "L'adresse email est obligatoire")]
+    private string $email;
 
     #[ORM\Column(type: 'json')]
-    private $roles = [];
+    private array $roles = [];
 
     #[ORM\Column(type: 'string')]
-    private $password;
+    private string $password;
 
     public function getId(): ?int
     {
