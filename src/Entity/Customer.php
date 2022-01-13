@@ -21,7 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     denormalizationContext: ["disable_type_enforcement" => true],
     normalizationContext: ["groups" => "customer_read"],
 )]
-//#[UniqueEntity('email', message: "Cette adresse email est deja enregistrée")]
+#[UniqueEntity('email', message: "Cette adresse email est deja enregistrée")]
 class Customer
 {
     #[ORM\Id]
