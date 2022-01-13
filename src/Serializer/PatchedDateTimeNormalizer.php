@@ -100,7 +100,7 @@ class PatchedDateTimeNormalizer implements NormalizerInterface, DenormalizerInte
             return \DateTime::class === $type ? new \DateTime($data, $timezone) : new \DateTimeImmutable($data, $timezone);
         } catch (\Exception $e) {
             // Si cette option est a true et que le type n'est pas bon on renvoi quand meme la donnée
-            if($context['disable_type_enforcement'] ?? false) {
+            if ($context['disable_type_enforcement'] ?? false) {
                 return $data;
             }
 
