@@ -42,7 +42,8 @@ final class UserFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'password' => 12345678
+            'password' => 12345678,
+            'roles' => ['ROLE_ADMIN']
         ];
     }
 
