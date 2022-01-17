@@ -8,8 +8,8 @@ Il va falloir que vous exposiez un certain nombre d’API pour que les applicati
 Il doit être possible de :
 
 - consulter la liste des produits BileMo
-- consulter les détails d’un produit BileMo 
-- consulter la liste des utilisateurs inscrits liés à un client sur le site web 
+- consulter les détails d’un produit BileMo
+- consulter la liste des utilisateurs inscrits liés à un client sur le site web
 - consulter le détail d’un utilisateur inscrit lié à un client
 - ajouter un nouvel utilisateur lié à un client
 - supprimer un utilisateur ajouté par un client.
@@ -47,7 +47,7 @@ Create database and install it (in www container)
 
 Update schema
 ```yaml
-php bin/console doctrine:schema:update -f
+  php bin/console doctrine:schema:update -f
 ```
 
 Load Fixtures
@@ -60,7 +60,23 @@ Reload Fixtures after change
   composer prepare
 ```
 
+Start the docker container
+```yaml
+  docker start <container_name>
+```
+
+Start the HTTP server in daemon
+```yaml
+  symfony serve -d
+```
+
 *Application is available at http://127.0.0.1:8000
+
+Credentials to login
+```yaml
+  username: client1@test.fr
+  password: '12345678'
+```
 
 ## Requirements
 - PHP 8.0
