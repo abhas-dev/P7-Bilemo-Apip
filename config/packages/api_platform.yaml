@@ -1,17 +1,16 @@
 api_platform:
-    mapping:
-        paths: ['%kernel.project_dir%/src/Entity']
-    patch_formats:
-        json: ['application/merge-patch+json']
-    swagger:
-        versions: [3]
-        api_keys:
-            apiKey:
-                name: Authorization
-                type: header
-    defaults:
-        pagination_enabled: false
+  mapping:
+    paths: ["%kernel.project_dir%/src/Entity"]
+  patch_formats:
+    json: ["application/merge-patch+json"]
+  swagger:
+    versions: [3]
+    api_keys:
+      apiKey:
+        name: Authorization
+        type: header
+  defaults:
+    pagination_enabled: false
 #        pagination_items_per_page: 10
 #        pagination_client_enabled: true
-
 
