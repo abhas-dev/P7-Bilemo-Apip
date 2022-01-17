@@ -25,3 +25,7 @@ services:
     # please note that last definitions always *replace* previous ones
     App\Serializer\PatchedDateTimeNormalizer:
         tags: [ serializer.normalizer ]
+
+    App\OpenApi\JwtDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
