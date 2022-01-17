@@ -10,7 +10,8 @@ use Zenstruck\Foundry\Test\ResetDatabase;
 
 class CustomerResourceTest extends ApiTestCase
 {
-    use ResetDatabase, Factories;
+    use ResetDatabase;
+    use Factories;
 
     public function testCreateCustomer()
     {

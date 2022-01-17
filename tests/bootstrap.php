@@ -16,5 +16,4 @@ if (file_exists(dirname(__DIR__).'/config/bootstrap.php')) {
 Zenstruck\Foundry\Test\TestState::addGlobalState(function () {
     ClientFactory::createOne(['customers' => CustomerFactory::createMany(50)]);
     PhoneFactory::createMany(100);
-
 });
