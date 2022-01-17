@@ -70,7 +70,8 @@ Start the HTTP server in daemon
   symfony serve -d
 ```
 
-*Application is available at http://127.0.0.1:8000
+* Application is available at http://127.0.0.1:8000
+* Documentation is available at /api
 
 Credentials to login
 ```yaml
