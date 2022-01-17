@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     itemOperations: ["GET", "PUT", "DELETE"],
     attributes: [
         "pagination_enabled" => true,
-        "pagination_items_per_page" => 50,
+        "pagination_items_per_page" => 10,
 //        "order" => ["firstname" => "desc"]
     ],
     denormalizationContext: [

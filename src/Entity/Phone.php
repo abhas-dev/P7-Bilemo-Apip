@@ -37,7 +37,7 @@ class Phone
     private int $quantity;
 
     #[ORM\Column(type: 'datetime')]
-    private \DateTime $createdAt;
+    private \DateTimeInterface $createdAt;
 
     public function getId(): ?int
     {
